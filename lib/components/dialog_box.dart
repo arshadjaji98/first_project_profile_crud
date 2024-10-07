@@ -6,7 +6,6 @@ class CreateUserDialog extends StatefulWidget {
   const CreateUserDialog({super.key, required this.onCreateUser});
 
   @override
-  // ignore: library_private_types_in_public_api
   _CreateUserDialogState createState() => _CreateUserDialogState();
 }
 
@@ -16,7 +15,6 @@ class _CreateUserDialogState extends State<CreateUserDialog> {
 
   @override
   void dispose() {
-    // Dispose of the controllers to free up memory when the widget is removed
     usernameController.dispose();
     emailController.dispose();
     super.dispose();

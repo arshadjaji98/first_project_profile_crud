@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
-  final void Function()? onTap;
+  final VoidCallback onTap;
   final String text;
-  final bool isLoading; // New parameter to track loading state
+  final bool isLoading;
 
-  const MyButton(
-      {Key? key,
-      required this.onTap,
-      required this.text,
-      required this.isLoading})
-      : super(key: key);
+  const MyButton({
+    super.key,
+    required this.onTap,
+    required this.text,
+    this.isLoading = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: isLoading ? null : onTap,
       child: Container(
-        padding: const EdgeInsets.all(25),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(9),
           color: Colors.black,
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Center(
-          child: Text(
-            text,
-            style: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
-          ),
+          child: isLoading
+              ? const CircularProgressIndicator(color: Colors.white)
+              : Text(
+                  text,
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
+                ),
         ),
       ),
     );

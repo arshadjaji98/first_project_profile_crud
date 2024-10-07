@@ -20,22 +20,34 @@ class _SignupScreenState extends State<SignupScreen> {
   bool isLoading = false;
 
   void signUp() async {
+    // Check if the passwords match
     if (passwordController.text != confirmPasswordController.text) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Passwords do not match')),
       );
       return;
     }
+    setState(() {
+      isLoading = true;
+    });
 
     final authService = Provider.of<AuthService>(context, listen: false);
     try {
-      await authService.signUpWithEmailandPassword(emailController.text,
-          passwordController.text, usernameController.text);
+      await authService.signUpWithEmailandPassword(
+        emailController.text,
+        passwordController.text,
+        usernameController.text,
+      );
     } catch (e) {
-      // ignore: use_build_context_synchronously
+      // Show error message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.toString())),
       );
+    } finally {
+      // Stop loading indicator
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 

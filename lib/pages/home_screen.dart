@@ -97,6 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
         actions: [
           IconButton(
@@ -155,18 +156,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           IconButton(
-                            icon: const Icon(Icons.edit, color: Colors.blue),
-                            onPressed: () {
-                              _showUpdateDialog(
-                                context,
-                                document.id,
-                                data['username'],
-                                data['email'],
-                              );
-                            },
-                          ),
+                              icon: const Icon(Icons.edit,
+                                  color: Colors.blueGrey),
+                              onPressed: () {
+                                _showUpdateDialog(context, document.id,
+                                    data['username'], data['email']);
+                              }),
                           IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.red),
+                            icon: const Icon(Icons.delete,
+                                color: Colors.deepPurple),
                             onPressed: () {
                               deleteUser(document.id);
                             },
